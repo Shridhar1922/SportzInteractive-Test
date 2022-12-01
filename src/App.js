@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { getPlayerList } from "./api/getPlayerList";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
-import TextField from "@mui/material/TextField"
+
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [playerList, setPlayerList] = useState();
   const [teamList, setTeamList] = useState();
+  const [searchTerm,setSearchTerm]=useState("")
   useEffect(() => {
     getPlayerList().then((items) => {
       setIsLoaded(true);
@@ -36,11 +37,36 @@ function App() {
     <div className="App">
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-
+         <input type="text" placeholder="Search" onChange={(e)=>{
+          setSearchTerm(e.target.value)
+         }}></input>
         </Grid>
         {playerList !== undefined && playerList !== null
-          ? playerList.map((item) => (
+          ? playerList.filter((val)=>{
+            console.log("....",searchTerm)
+            if(searchTerm==""){
+              return val
+            }else{
+              console.log("else running")
+              
+              {teamList.filter((team) => 
+                
+                 {
+                  if(team.TID == val.TID){
+                    console.log("else running ifff",team.OfficialName.toLowerCase())
+                   if(team.OfficialName.toLowerCase().includes(searchTerm.toLowerCase())){
+                    return val;
+                   }else{
+                    console.log("else running ifff elseeeeee",team.OfficialName.toLowerCase().includes(searchTerm.toLowerCase()))
+                   }
+                  }
+
+                  
+                
+                 }
+              )}
+            }
+          }).map((item) => (
             <Grid item xs={4}>
               <PlayerBox>
                 <PlayerImgBox>
