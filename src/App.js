@@ -117,8 +117,12 @@ function App() {
 }
 
 const PlayerBox = styled.div`
-  padding: 0px;
-  background: #585858;
+padding: 0px;
+background: #585858;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: end;
 `;
 const PlayerImgBox = styled.div`
   padding: 15px 0px;
