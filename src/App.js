@@ -46,6 +46,8 @@ function App() {
             console.log("....",searchTerm)
             if(searchTerm==""){
               return val
+            }else if(val.PFName.toLowerCase().includes(searchTerm.toLowerCase())){
+            return val
             }else{
               console.log("else running")
               
